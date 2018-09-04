@@ -23,6 +23,8 @@ nBands <- refInfo$row_col_band[3]
 
 b34 <- h5read(f, 'Reflectance', index = list(1:nCols, 1:nRows, 34))
 
+dim(b34)
+
 class(b34)
 
 b34 <- b34[, , 1]
@@ -108,3 +110,17 @@ H5close()
 raster2 <- h5read(f, 'Reflectance', index = list(1:nCols, 1:nRows, 34))
 
 aPixel<- h5read(f,"Reflectance",index=list(54,36,NULL))
+
+
+b46 <- h5read(f, 'Reflectance', index = list(1:nCols, 1:nRows, 46))
+b46 <- b46[, , 1]
+image(b46)
+image(log(b46))
+
+#Q2: vary distribution of values
+b34 <- b34[, , 1]
+class(b34)
+
+b34[b34 > 6000] <- 10000
+image(b34)
+image(log(b34))
